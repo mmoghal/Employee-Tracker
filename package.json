@@ -8,7 +8,7 @@
   "name": "employee-tracker",
   "description": "Employee-Tracker",
   "version": "1.0.0",
-  "main": "connection.js",
+  "main": "app.js",
   "scripts": {
     "test": "jest"
   },
@@ -24,5 +24,6 @@
   "bugs": {
     "url": "https://github.com/mmoghal/Employee-Tracker/issues"
   },
-  "homepage": "https://github.com/mmoghal/Employee-Tracker#readme"
+  "homepage": "https://github.com/mmoghal/Employee-Tracker#readme",
+  "devDependencies": {}
 }
