@@ -1,9 +1,10 @@
+// Importing the necessary packages
 require('dotenv').config();
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const consoletable = require('console.table');
 
-// Create a connection to the MySQL database
+// Creating the connection to the MySQL database
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
@@ -12,7 +13,7 @@ const connection = mysql.createConnection({
   database: process.env.DB_DATABASE
 });
 
-// Connect to the MySQL database using promises
+// Connecting to the MySQL database using promises
 const connectToDatabase = () => {
   return new Promise((resolve, reject) => {
     connection.connect((err) => {
@@ -27,7 +28,7 @@ const connectToDatabase = () => {
   });
 };
 
-// Export the connected promise-based connection
+// Exporting the connected promise-based connection
 module.exports = {
   connectToDatabase,
   connection
