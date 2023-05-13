@@ -1,5 +1,7 @@
 require('dotenv').config();
 const mysql = require('mysql2');
+const inquirer = require('inquirer');
+const consoletable = require('console.table');
 
 // Create a connection to the MySQL database
 const connection = mysql.createConnection({
@@ -10,14 +12,23 @@ const connection = mysql.createConnection({
   database: process.env.DB_DATABASE
 });
 
-// Connect to the MySQL database
-connection.connect(function (err) {
-  if (err) {
-    console.error('Error connecting to the database: ' + err.stack);
-    return;
-  }
-  console.log('Connected to the database.');
-});
+// Connect to the MySQL database using promises
+const connectToDatabase = () => {
+  return new Promise((resolve, reject) => {
+    connection.connect((err) => {
+      if (err) {
+        console.error('Error connecting to the database: ' + err.stack);
+        reject(err);
+        return;
+      }
+      console.log('Connected to the database.');
+      resolve();
+    });
+  });
+};
 
-// Export the connection
-module.exports = connection;
+// Export the connected promise-based connection
+module.exports = {
+  connectToDatabase,
+  connection
+};
