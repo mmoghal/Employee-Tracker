@@ -1,4 +1,4 @@
-const connection = require('../connection');
+const { connection } = require('../connection');
 
 // Function to get all departments
 const getAllDepartments = () => {

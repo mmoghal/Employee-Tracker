@@ -1,12 +1,7 @@
 const inquirer = require('inquirer');
-const {
-  getAllDepartments,
-  addDepartment,
-  getAllRoles,
-  addRole,
-  getAllEmployees,
-  addEmployee
-} = require('./database');
+const { getAllDepartments, addDepartment } = require('./database/department');
+const { getAllEmployees, addEmployee, updateEmployeeRole } = require('./database/employee');
+const { getAllRoles, addRole } = require('./database/role');
 
 // Function to display main menu and prompt user for action
 const promptMainMenu = () => {
@@ -23,6 +18,7 @@ const promptMainMenu = () => {
           'Add a role',
           'View all employees',
           'Add an employee',
+          'Update an employee role',
           'Exit'
         ]
       }
@@ -46,6 +42,9 @@ const promptMainMenu = () => {
           break;
         case 'Add an employee':
           promptAddEmployee();
+          break;
+        case 'Update an employee role':
+          promptUpdateEmployeeRole();
           break;
         case 'Exit':
           console.log('Goodbye!');
@@ -147,3 +146,96 @@ const promptAddRole = () => {
       });
   };
   
+    
+    // Function to view All Employees
+    const viewAllEmployees = () => {
+      getAllEmployees()
+        .then((employees) => {
+          console.table(employees);
+          promptMainMenu();
+        })
+        .catch((error) => {
+          console.error('Error occurred:', error);
+          promptMainMenu();
+        });
+    };
+    
+    // Function to prompt user for employee details and add an employee
+    const promptAddEmployee = () => {
+      inquirer
+        .prompt([
+          {
+            type: 'input',
+            name: 'first_name',
+            message: 'Enter the first name of the employee:'
+          },
+          {
+            type: 'input',
+            name: 'last_name',
+            message: 'Enter the last name of the employee:'
+          },
+          {
+            type: 'input',
+            name: 'role_id',
+            message: 'Enter the role ID of the employee:'
+          },
+          {
+            type: 'input',
+            name: 'manager_id',
+            message: 'Enter the manager ID of the employee (leave empty if no manager):',
+            default: null
+          }
+        ])
+        .then((answers) => {
+          addEmployee(answers)
+            .then((employeeId) => {
+              console.log(`Employee added with ID ${employeeId}`);
+              promptMainMenu();
+            })
+            .catch((error) => {
+              console.error('Error occurred:', error);
+              promptMainMenu();
+            });
+        })
+        .catch((error) => {
+          console.error('Error occurred:', error);
+          promptMainMenu();
+        });
+    };
+    
+    // Function to prompt user for employee and new role details and update the employee's role
+    const promptUpdateEmployeeRole = () => {
+      inquirer
+        .prompt([
+          {
+            type: 'input',
+            name: 'employeeId',
+            message: 'Enter the ID of the employee whose role you want to update:'
+          },
+          {
+            type: 'input',
+            name: 'roleId',
+            message: 'Enter the ID of the new role:'
+          }
+        ])
+        .then((answers) => {
+          const { employeeId, roleId } = answers;
+          updateEmployeeRole(employeeId, roleId)
+            .then(() => {
+              console.log('Employee role updated successfully!');
+              promptMainMenu();
+            })
+            .catch((error) => {
+              console.error('Error occurred:', error);
+              promptMainMenu();
+            });
+        })
+        .catch((error) => {
+          console.error('Error occurred:', error);
+          promptMainMenu();
+        });
+    };
+    
+    // Prompt the main menu to start the application
+    promptMainMenu();
+    
