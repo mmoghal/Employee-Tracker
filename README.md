@@ -49,7 +49,7 @@ The Employee Tracker is a command-line application built using Node.js and MySQL
 
 # Application Image
 
-![alt AplicationImage](https://https://github.com/mmoghal/Employee-Tracker/blob/main/pic.png)
+![alt Image of the application](https://https://github.com/mmoghal/Employee-Tracker/blob/main/pic.png)
 
 ## Contributing
 
