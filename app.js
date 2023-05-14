@@ -16,7 +16,7 @@ const afterConnection = () => {
   `;
   
   console.log(logo);
-  console.log('\x1b[1m%s\x1b[0m', 'Welcome to Employee Manager!\n');
+  console.log('\x1b[1m%s\x1b[0m', 'Welcome to Employee Database Manager!\n');
   // Your application logic goes here
 };
 
