@@ -3,6 +3,32 @@ const { getAllDepartments, addDepartment } = require('./database/department');
 const { getAllEmployees, addEmployee, updateEmployeeRole } = require('./database/employee');
 const { getAllRoles, addRole } = require('./database/role');
 
+const { connectToDatabase, connection } = require('./connection');
+
+const afterConnection = () => {
+  const logo = `
+  ██████╗ ███████╗██╗     ██╗      ██████╗ ███████╗███████╗
+  ██╔══██╗██╔════╝██║     ██║     ██╔═══██╗██╔════╝██╔════╝
+  ██║  ██║█████╗  ██║     ██║     ██║   ██║█████╗  █████╗  
+  ██║  ██║██╔══╝  ██║     ██║     ██║   ██║██╔══╝  ██╔══╝  
+  ██████╔╝███████╗███████╗███████╗╚██████╔╝███████╗███████╗
+  ╚═════╝ ╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝╚══════╝
+  `;
+  
+  console.log(logo);
+  console.log('\x1b[1m%s\x1b[0m', 'Welcome to Employee Manager!\n');
+  // Your application logic goes here
+};
+
+connectToDatabase()
+  .then(() => {
+    afterConnection();
+    // Call other functions or start the main menu prompt here
+  })
+  .catch((error) => {
+    console.error('Error connecting to the database:', error);
+  });
+
 // Function to display main menu and prompt user for action
 const promptMainMenu = () => {
   inquirer
