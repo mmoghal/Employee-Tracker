@@ -19,7 +19,7 @@ The Employee Tracker is a command-line application built using Node.js and MySQL
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/mmoghal/Employee-Tracker.git>`
+1. Clone the repository: `git clone https://github.com/mmoghal/Employee-Tracker.git`
 2. Navigate to the project directory: `cd employee-tracker`
 3. Install the dependencies: `npm install`
 
@@ -46,6 +46,10 @@ The Employee Tracker is a command-line application built using Node.js and MySQL
 - MySQL
 - Inquirer
 - console.table
+
+# Application Image
+
+![alt AplicationImage](https://https://github.com/mmoghal/Employee-Tracker/blob/main/)
 
 ## Contributing
 
